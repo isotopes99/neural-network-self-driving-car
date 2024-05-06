@@ -19,7 +19,10 @@ class Car {
     }
     this.controls = new Controls(controls_type);
     this.img = new Image();
-    this.img.src = "car.png";
+    this.img.src = get_random_color();
+    if (controls_type == "AI") {
+      this.img.src = "maincar.png";
+    }
   }
 
   update(roadBorders, traffic) {
@@ -120,7 +123,10 @@ class Car {
     this.y -= Math.cos(this.angle) * this.speed;
   }
 
-  draw(ctx, color, draw_sensor = false) {
+  draw(ctx, draw_sensor = false) {
+    if (this.sensor && draw_sensor) {
+      this.sensor.draw(ctx);
+    }
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(-this.angle);
@@ -132,8 +138,5 @@ class Car {
       this.height
     );
     ctx.restore();
-    if (this.sensor && draw_sensor) {
-      this.sensor.draw(ctx);
-    }
   }
 }
