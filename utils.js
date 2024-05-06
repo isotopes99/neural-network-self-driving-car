@@ -45,3 +45,14 @@ function getRGBA(value) {
   const B = value > 0 ? 0 : 255;
   return "rgba(" + R + "," + G + "," + B + "," + alpha + ")";
 }
+function get_random_color() {
+  let options = [
+    "car.png",
+    "car0.png",
+    "car2.png",
+    "car3.png",
+    "car4.png",
+    "car5.png",
+  ];
+  return options[Math.floor(Math.random() * options.length)];
+}
